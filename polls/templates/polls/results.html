@@ -1,0 +1,65 @@
+{% load static %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<link rel="stylesheet" href="{% static 'deepthoughts/style.css' %}">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(158, 187, 140)">
+    <a class="navbar-brand" href="/polls/deepthoughts/" style="padding-left: 1%;">Deep Thoughts</a>
+    <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active" style="padding-left:1%">
+                <a class="nav-link" href="/polls/deepthoughts/list">List</a>
+            </li>
+            <li class="nav-item active" style="padding-left:1%">
+                <a class="nav-link" href="/polls/">Polls</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="text-center">
+    <h1 style="color:beige; padding-top:2%">{{ question.question_text }}</h1>
+    <div style="padding:1%">
+        <table class="table" style="color:beige; padding:1%">
+            <thead>
+                <tr>
+                    <th scope="col">Choice</th>
+                    <th scope="col">Number of Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for choice in question.choice_set.all %}
+                    <tr>
+                        <td>{{choice.choice_text}}</td>
+                        <td>{{choice.votes}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>   
+    <button class="btn btn-primary" href="{% url 'polls:detail' question.id %}" style="margin: 1%; background-color: rgb(158, 187, 140)">Vote again?</button>
+</div>
+
+<footer class="text-center fixed-bottom">
+    <div class="text-muted" style="background-color: rgb(158, 187, 140); padding-top: 1%">
+        <span style="color:beige;">
+            CS 3240: Emily Yao
+        </span>
+    </div>
+    <!-- Copyright -->
+    <div class="text-muted" style="color:beige; background-color: rgb(158, 187, 140); padding-bottom: 1%">
+        <span style="color:beige; ">
+            2022 Not Actually Copyright
+        </span>
+    </div>
+    <!-- Copyright -->
+ </footer>

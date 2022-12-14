@@ -1,0 +1,60 @@
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/deepthoughts/style.css' %}">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(158, 187, 140)">
+    <a class="navbar-brand" href="/polls/deepthoughts/" style="padding-left: 1%;">Deep Thoughts</a>
+    <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active" style="padding-left:1%">
+                <a class="nav-link" href="/polls/deepthoughts/list">List</a>
+            </li>
+            <li class="nav-item active" style="padding-left:1%">
+                <a class="nav-link" href="/polls/">Polls</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<h1 class="text-center" style="padding-top:2%; color: beige">Got any deep thoughts?</h1>
+<h4 class="text-center" style="color: beige">Share below!</h2>
+
+{# Display a form #}
+<form action="" method="post" class="form" style="padding: 1%">
+    {% csrf_token %}
+    <div class="form-group" style="margin: 1%">
+        <label for="Deep Thought Title" style="color: beige">Deep thought title</label>
+        <input type="text" class="form-control" name="deepthought_title" placeholder="Enter title">
+    </div>
+    <div class="form-group" style="margin: 1%">
+        <label for="Deep Thought"style="color: beige">Deep thought description</label>
+        <input type="text" class="form-control" name="deepthought_description" placeholder="Enter description">
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin: 1%; background-color: rgb(158, 187, 140)">Submit</button>
+</form>
+
+<footer class="text-center fixed-bottom">
+    <div class="text-muted" style="background-color: rgb(158, 187, 140); padding-top: 1%">
+        <span style="color:beige;">
+            CS 3240: Emily Yao
+        </span>
+    </div>
+    <!-- Copyright -->
+    <div class="text-muted" style="color:beige; background-color: rgb(158, 187, 140); padding-bottom: 1%">
+        <span style="color:beige; ">
+            2022 Not Actually Copyright
+        </span>
+    </div>
+    <!-- Copyright -->
+  </footer>

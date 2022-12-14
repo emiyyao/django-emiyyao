@@ -1,0 +1,56 @@
+{% load static %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<link rel="stylesheet" href="{% static 'deepthoughts/style.css' %}">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(158, 187, 140)">
+    <a class="navbar-brand" href="/polls/deepthoughts/" style="padding-left: 1%;">Deep Thoughts</a>
+    <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active" style="padding-left:1%">
+                <a class="nav-link" href="/polls/deepthoughts/list">List</a>
+            </li>
+            <li class="nav-item active" style="padding-left:1%">
+                <a class="nav-link" href="/polls/">Polls</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{# Display a form #}
+<form action="{% url 'polls:vote' question.id %}" method="post" class="form text-center" style="padding: 1%">
+    {% csrf_token %}
+    <fieldset class="form-group" style="margin: 1%">
+        <h1 style="color:beige">{{ question.question_text }}</h1>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for choice in question.choice_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}"style="color:beige">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <button type="submit" value="Vote" class="btn btn-primary" style="margin: 1%; background-color: rgb(158, 187, 140)">Vote</button>
+</form>
+    
+<footer class="text-center fixed-bottom">
+    <div class="text-muted" style="background-color: rgb(158, 187, 140); padding-top: 1%">
+        <span style="color:beige;">
+            CS 3240: Emily Yao
+        </span>
+    </div>
+    <!-- Copyright -->
+    <div class="text-muted" style="color:beige; background-color: rgb(158, 187, 140); padding-bottom: 1%">
+        <span style="color:beige; ">
+            2022 Not Actually Copyright
+        </span>
+    </div>
+    <!-- Copyright -->
+</footer>
